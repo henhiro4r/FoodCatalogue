@@ -36,12 +36,12 @@ class CategoryAdapter extends StatelessWidget {
   }
 
   void selectCategory(BuildContext context) {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (_) {
-          return CategoryFoodsScreen(id, title);
-        },
-      ),
+    Navigator.of(context).pushNamed(
+      CategoryFoodsScreen.routeName,
+      arguments: {
+        'id': id,
+        'title': title,
+      },
     );
   }
 }

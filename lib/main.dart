@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:foodcatalogue/screen/CategoryFoodsScreen.dart';
 import 'package:foodcatalogue/screen/CategoryScreen.dart';
 
 void main() => runApp(MyApp());
@@ -11,7 +12,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.deepOrange,
         accentColor: Colors.deepOrangeAccent,
-        canvasColor: Color.fromRGBO(255, 254, 229, 1),
+        canvasColor: Colors.white,
         fontFamily: 'Raleway',
         textTheme: ThemeData.light().textTheme.copyWith(
               body1: TextStyle(
@@ -27,7 +28,12 @@ class MyApp extends StatelessWidget {
               ),
             ),
       ),
-      home: CategoryScreen(),
+//      home: CategoryScreen(),
+      initialRoute: '/',
+      routes: {
+        '/': (ctx) => CategoryScreen(),
+        CategoryFoodsScreen.routeName: (ctx) => CategoryFoodsScreen(),
+      },
     );
   }
 }
