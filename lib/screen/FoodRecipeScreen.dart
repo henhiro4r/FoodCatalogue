@@ -4,6 +4,11 @@ import 'package:foodcatalogue/model/Food.dart';
 class FoodRecipeScreen extends StatelessWidget {
   static const routeName = '/foods-recipe';
 
+  final Function addFavorite;
+  final Function isFavorite;
+
+  FoodRecipeScreen(this.addFavorite, this.isFavorite);
+
   Widget sectionTitle(BuildContext context, String title) {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 16),
@@ -77,8 +82,10 @@ class FoodRecipeScreen extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.delete),
-        onPressed: () => Navigator.of(context).pop(food),
+        child: Icon(
+          isFavorite(food) ? Icons.favorite : Icons.favorite_border,
+        ),
+        onPressed: () => addFavorite(food),
       ),
     );
   }

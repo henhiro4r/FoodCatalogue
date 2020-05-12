@@ -46,16 +46,10 @@ class _CategoryFoodsScreenState extends State<CategoryFoodsScreen> {
       ),
       body: ListView.builder(
         itemBuilder: (ctx, index) {
-          return FoodAdapter(categoryFood[index], _removeFood);
+          return FoodAdapter(categoryFood[index]);
         },
         itemCount: categoryFood.length,
       ),
     );
-  }
-
-  void _removeFood(Food food) {
-    setState(() {
-      categoryFood.removeWhere((f) => f.id == food.id);
-    });
   }
 }

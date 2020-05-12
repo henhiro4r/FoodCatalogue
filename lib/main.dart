@@ -23,6 +23,7 @@ class _MyAppState extends State<MyApp> {
   };
 
   List<Food> _filteredFood = DUMMY_MEALS;
+  List<Food> _favorite = [];
 
   @override
   Widget build(BuildContext context) {
@@ -50,9 +51,9 @@ class _MyAppState extends State<MyApp> {
 //      home: CategoryScreen(),
       initialRoute: '/',
       routes: {
-        '/': (ctx) => TabScreen(),
+        '/': (ctx) => TabScreen(_favorite),
         CategoryFoodsScreen.routeName: (ctx) => CategoryFoodsScreen(_filteredFood),
-        FoodRecipeScreen.routeName: (ctx) => FoodRecipeScreen(),
+        FoodRecipeScreen.routeName: (ctx) => FoodRecipeScreen(_setFavorite, _isFavorite),
         SettingScreen.routeName: (ctx) => SettingScreen(_preference, _setPref),
       },
       onUnknownRoute: (settings) {
@@ -81,5 +82,22 @@ class _MyAppState extends State<MyApp> {
         return true;
       }).toList();
     });
+  }
+
+  void _setFavorite(Food food){
+    final exist = _favorite.indexWhere((f) => f.id == food.id);
+    if  (exist >= 0) {
+      setState(() {
+        _favorite.removeAt(exist);
+      });
+    } else {
+      setState(() {
+        _favorite.add(food);
+      });
+    }
+  }
+
+  bool _isFavorite(Food food) {
+    return _favorite.any((f) => f.id == food.id);
   }
 }
