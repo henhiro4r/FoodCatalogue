@@ -4,8 +4,9 @@ import 'package:foodcatalogue/screen/FoodRecipeScreen.dart';
 
 class FoodAdapter extends StatelessWidget {
   final Food food;
+  final Function removeItem;
 
-  FoodAdapter(this.food);
+  FoodAdapter(this.food, this.removeItem);
 
   String get complexity {
     switch (food.complexity) {
@@ -120,9 +121,14 @@ class FoodAdapter extends StatelessWidget {
   }
 
   void selectedFood(BuildContext context) {
-    Navigator.of(context).pushNamed(
+    Navigator.of(context)
+        .pushNamed(
       FoodRecipeScreen.routeName,
       arguments: food,
-    );
+    ).then((result) {
+      if (result != null) {
+        removeItem(result);
+      }
+    });
   }
 }

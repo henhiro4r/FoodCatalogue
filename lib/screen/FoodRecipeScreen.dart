@@ -63,7 +63,9 @@ class FoodRecipeScreen extends StatelessWidget {
               itemBuilder: (ctx, index) => Column(
                 children: <Widget>[
                   ListTile(
-                    leading: CircleAvatar(child: Text('#${(index+1)}'),),
+                    leading: CircleAvatar(
+                      child: Text('#${(index + 1)}'),
+                    ),
                     title: Text(food.steps[index]),
                   ),
                   Divider(),
@@ -73,6 +75,10 @@ class FoodRecipeScreen extends StatelessWidget {
             )),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.delete),
+        onPressed: () => Navigator.of(context).pop(food),
       ),
     );
   }
