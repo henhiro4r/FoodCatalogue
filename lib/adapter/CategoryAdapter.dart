@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:foodcatalogue/model/Category.dart';
 import 'package:foodcatalogue/screen/CategoryFoodsScreen.dart';
 
 class CategoryAdapter extends StatelessWidget {
-  final String id;
-  final String title;
-  final Color color;
+  final Category category;
 
-  CategoryAdapter(this.id, this.title, this.color);
+  CategoryAdapter(this.category);
 
   @override
   Widget build(BuildContext context) {
@@ -17,14 +16,14 @@ class CategoryAdapter extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(15),
         child: Text(
-          title,
+          category.title,
           style: Theme.of(context).textTheme.title,
         ),
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              color.withOpacity(0.7),
-              color,
+              category.bgColor.withOpacity(0.7),
+              category.bgColor,
             ],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
@@ -38,10 +37,7 @@ class CategoryAdapter extends StatelessWidget {
   void selectCategory(BuildContext context) {
     Navigator.of(context).pushNamed(
       CategoryFoodsScreen.routeName,
-      arguments: {
-        'id': id,
-        'title': title,
-      },
+      arguments: category,
     );
   }
 }
