@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:foodcatalogue/screen/CategoryScreen.dart';
+import 'package:foodcatalogue/screen/FavoriteScreen.dart';
 
 class TabScreen extends StatefulWidget {
   @override
@@ -10,6 +12,7 @@ class _TabScreenState extends State<TabScreen> {
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 2,
+      initialIndex: 0,
       child: Scaffold(
         appBar: AppBar(
           title: Text('Foods'),
@@ -20,7 +23,12 @@ class _TabScreenState extends State<TabScreen> {
             ],
           ),
         ),
-        body: TabBarView(children: null),
+        body: TabBarView(
+          children: <Widget>[
+            CategoryScreen(),
+            FavoriteScreen(),
+          ],
+        ),
       ),
     );
   }
